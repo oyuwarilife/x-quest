@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
+import AuthProvider from "@/components/AuthProvider";
 import "./globals.css";
 
 const notoSansJP = Noto_Sans_JP({
@@ -8,13 +9,13 @@ const notoSansJP = Noto_Sans_JP({
 });
 
 export const metadata: Metadata = {
-  title: "X Quest - X運用マスターへの道",
+  title: "X Quest - X運用マスターへの冒険",
   description:
-    "X（Twitter）運用スキルをゲーム感覚で習得。ロードマップに沿ってタスクをクリアし、レベルアップしよう。",
+    "X運用スキルをRPG感覚で習得。6つのステージをクリアして案件獲得レベルまでランクアップしよう。",
   openGraph: {
-    title: "X Quest - X運用マスターへの道",
+    title: "X Quest - X運用マスターへの冒険",
     description:
-      "X運用スキルをゲーム感覚で習得。ロードマップに沿ってレベルアップしよう。",
+      "X運用スキルをRPG感覚で習得。クエストをクリアしてランクアップしよう。",
   },
 };
 
@@ -25,7 +26,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className={notoSansJP.className}>{children}</body>
+      <body className={notoSansJP.className}>
+        <AuthProvider>{children}</AuthProvider>
+      </body>
     </html>
   );
 }

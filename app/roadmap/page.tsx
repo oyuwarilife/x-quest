@@ -10,6 +10,7 @@ import PhaseCard from "@/components/roadmap/PhaseCard";
 import LevelUpModal from "@/components/gamification/LevelUpModal";
 import XPFloat from "@/components/gamification/XPFloat";
 import { PHASES } from "@/lib/roadmap-data";
+import { syncTaskComplete, syncTaskUncomplete } from "@/hooks/useAuth";
 
 export default function RoadmapPage() {
   const router = useRouter();
@@ -27,8 +28,10 @@ export default function RoadmapPage() {
   const handleToggleTask = (taskId: string, phase: number) => {
     if (completedTaskIds.has(taskId)) {
       uncompleteTask(taskId);
+      syncTaskUncomplete(taskId);
     } else {
       completeTask(taskId, phase);
+      syncTaskComplete(taskId, phase);
     }
   };
 
