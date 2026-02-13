@@ -1,0 +1,21 @@
+{
+  "name": "X Quest - X運用マスターへの冒険",
+  "short_name": "X Quest",
+  "description": "X運用スキルをRPG感覚で習得。6つのステージをクリアして案件獲得レベルまでランクアップしよう。",
+  "start_url": "/dashboard",
+  "display": "standalone",
+  "background_color": "#F8F9FE",
+  "theme_color": "#6C5CE7",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

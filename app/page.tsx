@@ -238,6 +238,38 @@ export default function LandingPage() {
           ))}
         </div>
       </section>
+
+      {/* フッター */}
+      <footer className="border-t border-border bg-surface">
+        <div className="max-w-lg mx-auto px-4 py-6 text-center space-y-2">
+          <p className="font-black text-sm text-primary">X Quest</p>
+          <p className="text-xs text-text-sub">
+            X運用スキルをRPG感覚で習得する無料ツール
+          </p>
+          <div className="flex items-center justify-center gap-4 text-xs text-text-sub">
+            <a
+              href="https://x.com/oyuwarilife"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-primary transition-colors"
+            >
+              運営者のX
+            </a>
+            <span className="text-border">|</span>
+            <a
+              href="https://oyuwari.notion.site/X-Quest-Notion-306206dfc7ee80349025f5d5e460ec98"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-primary transition-colors"
+            >
+              Notionワークシート
+            </a>
+          </div>
+          <p className="text-[10px] text-locked mt-2">
+            &copy; {new Date().getFullYear()} oyuwari life
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }

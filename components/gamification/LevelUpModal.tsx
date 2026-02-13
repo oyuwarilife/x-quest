@@ -92,13 +92,29 @@ export default function LevelUpModal() {
               </motion.div>
             )}
 
-            <button
-              onClick={dismissLevelUp}
-              className="px-6 py-2.5 rounded-full text-white font-bold text-sm transition-transform hover:scale-105 active:scale-95"
-              style={{ backgroundColor: "var(--color-primary)" }}
-            >
-              冒険を続ける
-            </button>
+            <div className="space-y-2">
+              <button
+                onClick={() => {
+                  const text = newTitle
+                    ? `【X Quest】Lv.${levelUpTo} 称号「${newTitle}」を獲得しました！⚔️\n\nX運用マスターへの冒険を続けます💪\n\nhttps://x-quest.vercel.app`
+                    : `【X Quest】Lv.${levelUpTo} にランクアップしました！⚔️\n\nhttps://x-quest.vercel.app`;
+                  window.open(
+                    `https://x.com/intent/tweet?text=${encodeURIComponent(text)}`,
+                    "_blank"
+                  );
+                }}
+                className="w-full px-6 py-2.5 rounded-full font-bold text-sm text-white transition-transform hover:scale-105 active:scale-95"
+                style={{ backgroundColor: "#1DA1F2" }}
+              >
+                Xでシェアする
+              </button>
+              <button
+                onClick={dismissLevelUp}
+                className="w-full px-6 py-2.5 rounded-full font-bold text-sm transition-transform hover:scale-105 active:scale-95 border-2 border-border text-text-sub"
+              >
+                冒険を続ける
+              </button>
+            </div>
           </motion.div>
         </motion.div>
       )}

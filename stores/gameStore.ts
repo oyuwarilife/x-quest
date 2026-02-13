@@ -28,6 +28,8 @@ export const useGameStore = create<GameState>()(
       levelUpTo: null,
       newTitle: null,
       pendingXp: null,
+      showPhaseClearModal: false,
+      clearedPhaseId: null,
 
       setProfile: (profile: UserProfile) => set({ profile }),
 
@@ -94,6 +96,12 @@ export const useGameStore = create<GameState>()(
                 newTitle: newTitleInfo?.title ?? null,
               }
             : {}),
+          ...(bonusXp > 0
+            ? {
+                showPhaseClearModal: !leveledUp,
+                clearedPhaseId: phase,
+              }
+            : {}),
         });
       },
 
@@ -129,6 +137,9 @@ export const useGameStore = create<GameState>()(
       dismissLevelUp: () =>
         set({ showLevelUpModal: false, levelUpTo: null, newTitle: null }),
 
+      dismissPhaseClear: () =>
+        set({ showPhaseClearModal: false, clearedPhaseId: null }),
+
       clearPendingXp: () => set({ pendingXp: null }),
 
       loadFromCompletions: (completions: TaskCompletion[]) => {
@@ -154,6 +165,8 @@ export const useGameStore = create<GameState>()(
           levelUpTo: null,
           newTitle: null,
           pendingXp: null,
+          showPhaseClearModal: false,
+          clearedPhaseId: null,
         }),
     }),
     {

@@ -69,12 +69,15 @@ export interface GameState {
   levelUpTo: number | null;
   newTitle: string | null;
   pendingXp: number | null;
+  showPhaseClearModal: boolean;
+  clearedPhaseId: number | null;
 
   // アクション
   setProfile: (profile: UserProfile) => void;
   completeTask: (taskId: string, phase: number) => void;
   uncompleteTask: (taskId: string) => void;
   dismissLevelUp: () => void;
+  dismissPhaseClear: () => void;
   clearPendingXp: () => void;
   loadFromCompletions: (completions: TaskCompletion[]) => void;
   reset: () => void;
