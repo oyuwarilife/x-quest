@@ -62,13 +62,13 @@ export default function LevelUpModal() {
           >
             <motion.div
               className="text-5xl mb-4"
-              animate={{ scale: [1, 1.3, 1] }}
-              transition={{ duration: 0.6, delay: 0.3 }}
+              animate={{ scale: [1, 1.3, 1], rotate: [0, 10, -10, 0] }}
+              transition={{ duration: 0.8, delay: 0.3 }}
             >
-              🎉
+              &#x2694;&#xFE0F;
             </motion.div>
 
-            <h2 className="text-lg text-text-sub mb-2">LEVEL UP!</h2>
+            <h2 className="text-lg text-text-sub mb-2">RANK UP!</h2>
 
             <motion.div
               className="text-6xl font-black mb-3"
@@ -88,7 +88,7 @@ export default function LevelUpModal() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
               >
-                「{newTitle}」になりました！
+                称号「{newTitle}」を獲得！
               </motion.div>
             )}
 
@@ -97,7 +97,7 @@ export default function LevelUpModal() {
               className="px-6 py-2.5 rounded-full text-white font-bold text-sm transition-transform hover:scale-105 active:scale-95"
               style={{ backgroundColor: "var(--color-primary)" }}
             >
-              OK
+              冒険を続ける
             </button>
           </motion.div>
         </motion.div>

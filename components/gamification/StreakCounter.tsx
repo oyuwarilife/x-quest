@@ -16,7 +16,7 @@ export default function StreakCounter({ streak }: StreakCounterProps) {
     return (
       <div className="flex items-center gap-1.5 text-locked">
         <Flame size={20} />
-        <span className="text-sm">ストリーク: 0日</span>
+        <span className="text-sm">連続冒険: 0日</span>
       </div>
     );
   }
@@ -37,7 +37,7 @@ export default function StreakCounter({ streak }: StreakCounterProps) {
         <Flame size={20} style={{ color }} fill={color} />
       </motion.div>
       <span className="text-sm font-bold" style={{ color }}>
-        {streak}日連続
+        {streak}日連続冒険
       </span>
     </div>
   );

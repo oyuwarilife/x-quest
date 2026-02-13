@@ -5,11 +5,13 @@ import { useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   Rocket,
-  Target,
+  Swords,
   Flame,
-  Trophy,
+  Crown,
   ChevronRight,
   LogIn,
+  Scroll,
+  ExternalLink,
 } from "lucide-react";
 import { useGameStore } from "@/stores/gameStore";
 import { PHASES } from "@/lib/roadmap-data";
@@ -44,7 +46,7 @@ export default function LandingPage() {
   const handleGuestStart = () => {
     useGameStore.getState().setProfile({
       id: crypto.randomUUID(),
-      displayName: "ゲスト",
+      displayName: "冒険者",
       avatarUrl: null,
       totalXp: 0,
       currentLevel: 1,
@@ -58,43 +60,62 @@ export default function LandingPage() {
 
   const features = [
     {
-      icon: Target,
-      title: "ロードマップ型",
-      desc: "6フェーズのステップで迷わず進める",
+      icon: Swords,
+      title: "6つのステージ",
+      desc: "段階的にクエストを攻略して成長しよう",
     },
     {
       icon: Flame,
-      title: "ストリーク",
-      desc: "毎日の継続がレベルアップにつながる",
+      title: "連続冒険ボーナス",
+      desc: "毎日の継続で冒険者ランクが上がる",
     },
     {
-      icon: Trophy,
-      title: "レベルシステム",
-      desc: "タスク完了でXPを獲得してレベルアップ",
+      icon: Crown,
+      title: "冒険者ランク",
+      desc: "クエスト達成でXPを獲得してランクアップ",
     },
+  ];
+
+  const stageNames = [
+    "調査と戦略",
+    "プロフィール構築",
+    "発信と信頼",
+    "関係構築",
+    "導線設計",
+    "案件獲得",
   ];
 
   return (
     <div className="min-h-screen bg-bg">
-      <section className="max-w-lg mx-auto px-4 pt-16 pb-12 text-center">
+      {/* ヒーローセクション */}
+      <section className="max-w-lg mx-auto px-4 pt-16 pb-10 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
+          <motion.div
+            className="text-5xl mb-4"
+            animate={{ y: [0, -8, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          >
+            &#x2694;&#xFE0F;
+          </motion.div>
           <h1 className="text-4xl font-black mb-3">
             <span style={{ color: "var(--color-x-blue)" }}>X</span>{" "}
             <span style={{ color: "var(--color-primary)" }}>Quest</span>
           </h1>
           <p className="text-lg font-bold text-text mb-2">
-            X運用マスターへの道
+            X運用マスターへの冒険
           </p>
           <p className="text-sm text-text-sub leading-relaxed">
-            クライアントワーカーのためのX運用学習アプリ。
+            案件獲得という名のラスボスを倒すために、
             <br />
-            ロードマップに沿ってタスクをクリアし、
+            6つのステージをクリアしよう。
             <br />
-            案件獲得レベルまでレベルアップしよう。
+            <span className="font-medium text-text">
+              クエスト達成でXPを獲得し、冒険者ランクを上げていけ。
+            </span>
           </p>
         </motion.div>
 
@@ -111,7 +132,7 @@ export default function LandingPage() {
               style={{ backgroundColor: "var(--color-primary)" }}
             >
               <LogIn size={18} />
-              Googleでログインして始める
+              Googleでログインして冒険を始める
             </button>
           )}
           <button
@@ -124,15 +145,44 @@ export default function LandingPage() {
             style={supabaseEnabled ? {} : { backgroundColor: "var(--color-primary)" }}
           >
             <Rocket size={18} />
-            ゲストで試す
+            冒険を始める
           </button>
           <p className="text-xs text-text-sub">
-            ※ ゲストモードはブラウザにデータを保存します
+            ※ ゲストモード：ブラウザにデータを保存します
           </p>
         </motion.div>
       </section>
 
-      <section className="max-w-lg mx-auto px-4 pb-12">
+      {/* 冒険者の装備（Notionシート） */}
+      <section className="max-w-lg mx-auto px-4 pb-10">
+        <motion.a
+          href="https://oyuwari.notion.site/X-Quest-Notion-306206dfc7ee80349025f5d5e460ec98"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block p-4 rounded-2xl border-2 border-accent/40 bg-accent/10 hover:bg-accent/15 transition-colors"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-accent/20 flex items-center justify-center shrink-0">
+              <Scroll size={20} style={{ color: "var(--color-accent)" }} />
+            </div>
+            <div className="flex-1">
+              <h3 className="font-bold text-sm flex items-center gap-1">
+                冒険者の装備を受け取る
+                <ExternalLink size={12} className="text-text-sub" />
+              </h3>
+              <p className="text-xs text-text-sub mt-0.5">
+                分析シート・テンプレート集など9種のNotionワークシート
+              </p>
+            </div>
+          </div>
+        </motion.a>
+      </section>
+
+      {/* 特徴 */}
+      <section className="max-w-lg mx-auto px-4 pb-10">
         <div className="space-y-3">
           {features.map((f, i) => (
             <motion.div
@@ -140,7 +190,7 @@ export default function LandingPage() {
               className="flex items-center gap-4 p-4 rounded-2xl bg-surface border border-border"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.4, delay: 0.3 + i * 0.1 }}
+              transition={{ duration: 0.4, delay: 0.4 + i * 0.1 }}
             >
               <div
                 className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
@@ -160,9 +210,10 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* ステージ一覧 */}
       <section className="max-w-lg mx-auto px-4 pb-16">
         <h2 className="text-center font-bold text-sm text-text-sub mb-4">
-          6つのフェーズでX運用をマスター
+          6つのステージで案件獲得を目指す冒険
         </h2>
         <div className="space-y-2">
           {PHASES.map((phase, i) => (
@@ -171,15 +222,15 @@ export default function LandingPage() {
               className="flex items-center gap-3 p-3 rounded-xl bg-surface border border-border"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.3, delay: 0.6 + i * 0.08 }}
+              transition={{ duration: 0.3, delay: 0.7 + i * 0.08 }}
             >
               <span className="text-xl">{phase.icon}</span>
               <div className="flex-1">
                 <h3 className="text-xs font-bold">
-                  Phase {phase.id}: {phase.title}
+                  Stage {phase.id}: {phase.title}
                 </h3>
                 <p className="text-xs text-text-sub">
-                  {phase.tasks.length}タスク
+                  {phase.tasks.length}クエスト
                 </p>
               </div>
               <ChevronRight size={16} className="text-locked" />

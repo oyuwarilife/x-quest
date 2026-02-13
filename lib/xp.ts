@@ -48,12 +48,12 @@ export function xpToNextLevel(totalXp: number): number {
 
 /** レベル称号一覧 */
 export const LEVEL_TITLES: LevelTitle[] = [
-  { minLevel: 1, maxLevel: 2, title: "ルーキー", color: "#95A5A6" },
-  { minLevel: 3, maxLevel: 4, title: "ビギナー", color: "#3498DB" },
-  { minLevel: 5, maxLevel: 7, title: "レギュラー", color: "#2ECC71" },
-  { minLevel: 8, maxLevel: 11, title: "プロ", color: "#9B59B6" },
-  { minLevel: 12, maxLevel: 14, title: "エキスパート", color: "#E67E22" },
-  { minLevel: 15, maxLevel: 99, title: "マスター", color: "#F1C40F" },
+  { minLevel: 1, maxLevel: 2, title: "見習い冒険者", color: "#95A5A6" },
+  { minLevel: 3, maxLevel: 4, title: "駆け出し冒険者", color: "#3498DB" },
+  { minLevel: 5, maxLevel: 7, title: "一人前の冒険者", color: "#2ECC71" },
+  { minLevel: 8, maxLevel: 11, title: "熟練の冒険者", color: "#9B59B6" },
+  { minLevel: 12, maxLevel: 14, title: "伝説の冒険者", color: "#E67E22" },
+  { minLevel: 15, maxLevel: 99, title: "X運用マスター", color: "#F1C40F" },
 ];
 
 /** レベルに対応する称号を取得 */

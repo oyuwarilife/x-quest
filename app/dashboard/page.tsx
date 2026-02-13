@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
-import { Map, ChevronRight } from "lucide-react";
+import { Map, ChevronRight, Swords } from "lucide-react";
 import Link from "next/link";
 import { useGameStore } from "@/stores/gameStore";
 import Header from "@/components/layout/Header";
@@ -73,9 +73,9 @@ export default function DashboardPage() {
         >
           <StreakCounter streak={profile.currentStreak} />
           <div className="text-right">
-            <p className="text-xs text-text-sub">全体進捗</p>
+            <p className="text-xs text-text-sub">冒険の進捗</p>
             <p className="text-sm font-bold">
-              {completedTotal}/{totalTasks} タスク
+              {completedTotal}/{totalTasks} クエスト
             </p>
           </div>
         </motion.div>
@@ -93,7 +93,7 @@ export default function DashboardPage() {
                   <div className="flex items-center gap-2">
                     <span className="text-xl">{currentPhase.icon}</span>
                     <h3 className="font-bold text-sm">
-                      Phase {currentPhase.id}: {currentPhase.title}
+                      Stage {currentPhase.id}: {currentPhase.title}
                     </h3>
                   </div>
                   <ChevronRight size={18} className="text-text-sub" />
@@ -111,7 +111,7 @@ export default function DashboardPage() {
           </motion.div>
         )}
 
-        {/* 次のタスク */}
+        {/* 次のクエスト */}
         {nextTask && (
           <motion.div
             className="p-4 rounded-2xl border-2 border-dashed border-primary/30 bg-primary/5"
@@ -119,12 +119,13 @@ export default function DashboardPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
           >
-            <p className="text-xs text-primary font-bold mb-1">
-              次にやること
+            <p className="text-xs text-primary font-bold mb-1 flex items-center gap-1">
+              <Swords size={12} />
+              次のクエスト
             </p>
             <p className="text-sm font-medium">{nextTask.label}</p>
             <p className="text-xs text-text-sub mt-1">
-              完了で +{nextTask.xp}XP
+              達成で +{nextTask.xp}XP
             </p>
           </motion.div>
         )}
@@ -141,7 +142,7 @@ export default function DashboardPage() {
             style={{ backgroundColor: "var(--color-primary)" }}
           >
             <Map size={18} />
-            ロードマップを見る
+            冒険マップへ
           </Link>
         </motion.div>
       </main>

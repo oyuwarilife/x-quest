@@ -51,7 +51,7 @@ export default function LogPage() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
         >
-          活動ログ
+          冒険ログ
         </motion.h1>
         <motion.p
           className="text-sm text-text-sub mb-5"
@@ -59,7 +59,7 @@ export default function LogPage() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.1 }}
         >
-          これまでの達成履歴
+          これまでの冒険記録
         </motion.p>
 
         {dates.length === 0 ? (
@@ -74,9 +74,9 @@ export default function LogPage() {
               style={{ color: "var(--color-locked)" }}
             />
             <p className="text-sm text-text-sub">
-              まだ活動記録がありません。
+              まだ冒険が始まっていません。
               <br />
-              ロードマップからタスクを完了しましょう！
+              冒険マップからクエストに挑戦しよう！
             </p>
           </motion.div>
         ) : (
@@ -110,7 +110,7 @@ export default function LogPage() {
                           </p>
                           {info && (
                             <p className="text-xs text-text-sub">
-                              Phase {info.phase.id}: {info.phase.title}
+                              Stage {info.phase.id}: {info.phase.title}
                             </p>
                           )}
                         </div>

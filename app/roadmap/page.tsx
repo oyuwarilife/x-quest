@@ -44,7 +44,7 @@ export default function RoadmapPage() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
         >
-          ロードマップ
+          冒険マップ
         </motion.h1>
         <motion.p
           className="text-sm text-text-sub mb-5"
@@ -52,7 +52,7 @@ export default function RoadmapPage() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.1 }}
         >
-          フェーズ順にタスクをクリアしてレベルアップしよう
+          クエストを達成して、X運用マスターを目指そう
         </motion.p>
 
         <div className="space-y-3">

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, Lock, Lightbulb, ExternalLink } from "lucide-react";
+import { ChevronDown, Lock, Lightbulb, ExternalLink, Scroll } from "lucide-react";
 import type { Phase } from "@/types";
 import TaskCheckbox from "./TaskCheckbox";
 import ProgressBar from "@/components/ui/ProgressBar";
@@ -54,11 +54,11 @@ export default function PhaseCard({
                 !isUnlocked ? "text-locked" : ""
               }`}
             >
-              Phase {phase.id}: {phase.title}
+              Stage {phase.id}: {phase.title}
             </h3>
             {isComplete && (
               <span className="text-xs bg-secondary text-white px-2 py-0.5 rounded-full">
-                完了
+                CLEAR
               </span>
             )}
           </div>
@@ -74,12 +74,12 @@ export default function PhaseCard({
                 height={6}
               />
               <span className="text-xs text-text-sub mt-1 block">
-                {completedCount}/{totalCount} タスク完了
+                {completedCount}/{totalCount} クエスト達成
               </span>
             </div>
           ) : (
             <p className="text-xs text-locked mt-0.5">
-              Lv.{phase.requiredLevel} で解放
+              Lv.{phase.requiredLevel} で解放されるステージ
             </p>
           )}
         </div>
@@ -125,7 +125,7 @@ export default function PhaseCard({
                   <div className="flex items-center gap-1.5 mb-2">
                     <Lightbulb size={14} style={{ color: "var(--color-accent)" }} />
                     <span className="text-xs font-bold" style={{ color: "var(--color-accent)" }}>
-                      コツ・アドバイス
+                      冒険者のヒント
                     </span>
                   </div>
                   <ul className="space-y-1.5">
@@ -142,9 +142,12 @@ export default function PhaseCard({
               {/* 補足リソース */}
               {phase.resources && phase.resources.length > 0 && (
                 <div className="mt-2 p-3 rounded-xl bg-primary/5 border border-primary/15">
-                  <span className="text-xs font-bold text-primary block mb-1.5">
-                    お役立ちシート
-                  </span>
+                  <div className="flex items-center gap-1.5 mb-1.5">
+                    <Scroll size={14} className="text-primary" />
+                    <span className="text-xs font-bold text-primary">
+                      冒険者の装備
+                    </span>
+                  </div>
                   <div className="space-y-1">
                     {phase.resources.map((resource, i) => (
                       <a

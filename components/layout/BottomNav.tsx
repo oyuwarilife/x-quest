@@ -2,12 +2,12 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, Map, ScrollText } from "lucide-react";
+import { Shield, Map, ScrollText } from "lucide-react";
 
 const navItems = [
-  { href: "/dashboard", icon: LayoutDashboard, label: "ホーム" },
-  { href: "/roadmap", icon: Map, label: "ロードマップ" },
-  { href: "/log", icon: ScrollText, label: "ログ" },
+  { href: "/dashboard", icon: Shield, label: "ステータス" },
+  { href: "/roadmap", icon: Map, label: "冒険マップ" },
+  { href: "/log", icon: ScrollText, label: "冒険ログ" },
 ];
 
 export default function BottomNav() {
