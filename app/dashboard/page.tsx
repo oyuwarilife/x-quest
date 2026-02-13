@@ -8,7 +8,6 @@ import Link from "next/link";
 import { useGameStore } from "@/stores/gameStore";
 import Header from "@/components/layout/Header";
 import BottomNav from "@/components/layout/BottomNav";
-import LevelBadge from "@/components/gamification/LevelBadge";
 import XPBar from "@/components/gamification/XPBar";
 import StreakCounter from "@/components/gamification/StreakCounter";
 import LevelUpModal from "@/components/gamification/LevelUpModal";
@@ -52,16 +51,28 @@ export default function DashboardPage() {
       <XPFloat />
 
       <main className="max-w-lg mx-auto px-4 py-6 space-y-5">
-        {/* レベル・称号 */}
+        {/* レベル・称号・ヒーロー */}
         <motion.div
-          className="text-center"
+          className="text-center p-6 rounded-2xl bg-surface border border-border"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <LevelBadge level={profile.currentLevel} size="lg" />
-          <div className="mt-3">
-            <XPBar totalXp={profile.totalXp} level={profile.currentLevel} />
+          <motion.div
+            className="text-5xl font-black mb-1"
+            style={{ color: titleInfo.color }}
+            initial={{ scale: 0.8 }}
+            animate={{ scale: 1 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
+            Lv.{profile.currentLevel}
+          </motion.div>
+          <div
+            className="text-sm font-bold mb-4"
+            style={{ color: titleInfo.color }}
+          >
+            {titleInfo.title}
           </div>
+          <XPBar totalXp={profile.totalXp} level={profile.currentLevel} />
         </motion.div>
 
         {/* ストリーク + 統計 */}
@@ -87,7 +98,7 @@ export default function DashboardPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
-            <Link href="/roadmap">
+            <Link href="/map">
               <div className="p-4 rounded-2xl bg-surface border border-border hover:border-primary/30 transition-colors">
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-2">
@@ -137,7 +148,7 @@ export default function DashboardPage() {
           transition={{ delay: 0.4 }}
         >
           <Link
-            href="/roadmap"
+            href="/map"
             className="flex items-center justify-center gap-2 p-3 rounded-2xl font-bold text-sm text-white transition-transform hover:scale-[1.02] active:scale-[0.98]"
             style={{ backgroundColor: "var(--color-primary)" }}
           >

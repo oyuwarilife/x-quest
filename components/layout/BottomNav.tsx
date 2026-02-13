@@ -6,7 +6,7 @@ import { Shield, Map, ScrollText } from "lucide-react";
 
 const navItems = [
   { href: "/dashboard", icon: Shield, label: "ステータス" },
-  { href: "/roadmap", icon: Map, label: "冒険マップ" },
+  { href: "/map", icon: Map, label: "冒険マップ" },
   { href: "/log", icon: ScrollText, label: "冒険ログ" },
 ];
 
