@@ -11,6 +11,7 @@ interface PhaseCardProps {
   phase: Phase;
   completedTaskIds: Set<string>;
   isUnlocked: boolean;
+  isCurrentPhase?: boolean;
   onToggleTask: (taskId: string, phase: number) => void;
 }
 
@@ -18,9 +19,10 @@ export default function PhaseCard({
   phase,
   completedTaskIds,
   isUnlocked,
+  isCurrentPhase = false,
   onToggleTask,
 }: PhaseCardProps) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(isCurrentPhase);
   const completedCount = phase.tasks.filter((t) =>
     completedTaskIds.has(t.id)
   ).length;
@@ -56,11 +58,15 @@ export default function PhaseCard({
             >
               Stage {phase.id}: {phase.title}
             </h3>
-            {isComplete && (
+            {isComplete ? (
               <span className="text-xs bg-secondary text-white px-2 py-0.5 rounded-full">
                 CLEAR
               </span>
-            )}
+            ) : isCurrentPhase ? (
+              <span className="text-xs bg-primary text-white px-2 py-0.5 rounded-full animate-pulse">
+                進行中
+              </span>
+            ) : null}
           </div>
           {isUnlocked ? (
             <div className="mt-1.5">
@@ -106,18 +112,27 @@ export default function PhaseCard({
             className="overflow-hidden"
           >
             <div className="px-4 pb-4 space-y-1.5">
-              <p className="text-xs text-text-sub mb-2 pl-1">
+              <p className="text-xs text-text-sub mb-1 pl-1">
                 {phase.description}
               </p>
-              {phase.tasks.map((task) => (
-                <TaskCheckbox
-                  key={task.id}
-                  task={task}
-                  completed={completedTaskIds.has(task.id)}
-                  disabled={false}
-                  onToggle={(id) => onToggleTask(id, phase.id)}
-                />
-              ))}
+              <p className="text-[11px] text-primary/60 mb-2 pl-1">
+                ※ 好きな順番で達成OK！スキップして後から戻れます
+              </p>
+              {phase.tasks.map((task) => {
+                const firstUncompletedId = phase.tasks.find(
+                  (t) => !completedTaskIds.has(t.id)
+                )?.id;
+                return (
+                  <TaskCheckbox
+                    key={task.id}
+                    task={task}
+                    completed={completedTaskIds.has(task.id)}
+                    disabled={false}
+                    isRecommended={isCurrentPhase && task.id === firstUncompletedId}
+                    onToggle={(id) => onToggleTask(id, phase.id)}
+                  />
+                );
+              })}
 
               {/* コツ・アドバイス */}
               {phase.tips && phase.tips.length > 0 && (

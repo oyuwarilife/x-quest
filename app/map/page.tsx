@@ -35,6 +35,12 @@ export default function RoadmapPage() {
     }
   };
 
+  // 現在のフェーズ（最初の未完了かつアンロック済み）
+  const currentPhaseId = PHASES.find((p) => {
+    const allDone = p.tasks.every((t) => completedTaskIds.has(t.id));
+    return !allDone && profile.currentLevel >= p.requiredLevel;
+  })?.id;
+
   return (
     <div className="min-h-screen bg-bg pb-nav">
       <Header />
@@ -70,6 +76,7 @@ export default function RoadmapPage() {
                 phase={phase}
                 completedTaskIds={completedTaskIds}
                 isUnlocked={profile.currentLevel >= phase.requiredLevel}
+                isCurrentPhase={phase.id === currentPhaseId}
                 onToggleTask={handleToggleTask}
               />
             </motion.div>

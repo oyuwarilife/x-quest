@@ -136,7 +136,7 @@ export default function DashboardPage() {
             </p>
             <p className="text-sm font-medium">{nextTask.label}</p>
             <p className="text-xs text-text-sub mt-1">
-              達成で +{nextTask.xp}XP
+              達成で +{nextTask.xp}XP ・ スキップもOK
             </p>
           </motion.div>
         )}

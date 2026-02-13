@@ -8,6 +8,7 @@ interface TaskCheckboxProps {
   task: Task;
   completed: boolean;
   disabled: boolean;
+  isRecommended?: boolean;
   onToggle: (taskId: string) => void;
 }
 
@@ -15,6 +16,7 @@ export default function TaskCheckbox({
   task,
   completed,
   disabled,
+  isRecommended = false,
   onToggle,
 }: TaskCheckboxProps) {
   return (
@@ -26,6 +28,8 @@ export default function TaskCheckbox({
           ? "opacity-40 cursor-not-allowed"
           : completed
           ? "bg-secondary/10"
+          : isRecommended
+          ? "bg-primary/10 ring-1 ring-primary/30"
           : "bg-surface hover:bg-primary/5 active:scale-[0.98]"
       }`}
     >
@@ -35,6 +39,8 @@ export default function TaskCheckbox({
             ? "border-secondary bg-secondary"
             : disabled
             ? "border-locked"
+            : isRecommended
+            ? "border-primary"
             : "border-border"
         }`}
         animate={completed ? { scale: [1, 1.2, 1] } : {}}
@@ -48,6 +54,11 @@ export default function TaskCheckbox({
           completed ? "line-through text-text-sub" : disabled ? "text-locked" : ""
         }`}
       >
+        {isRecommended && !completed && (
+          <span className="text-[10px] font-bold text-primary mr-1.5 align-middle">
+            ▶ おすすめ
+          </span>
+        )}
         {task.label}
       </span>
 
