@@ -65,13 +65,38 @@ async function loadUserData(userId: string) {
   // すでにログイン済みの同一ユーザーならスキップ
   if (store.profile?.id === userId) return;
 
+  // ゲストデータの引き継ぎ: ローカルに進捗があり、DBが空なら移行
+  const guestCompletions = store.taskCompletions;
+  const hasGuestData = store.profile && store.profile.id !== userId && guestCompletions.length > 0;
+
   const profile = await fetchProfile(userId);
   if (!profile) return;
 
-  const completions = await fetchCompletions(userId);
+  const dbCompletions = await fetchCompletions(userId);
 
-  store.setProfile(profile);
-  store.loadFromCompletions(completions);
+  if (hasGuestData && dbCompletions.length === 0) {
+    // ゲストデータをDBに移行
+    for (const c of guestCompletions) {
+      await saveCompletion({ ...c, userId });
+    }
+    // プロフィールも更新
+    await updateProfile({
+      ...profile,
+      totalXp: store.profile!.totalXp,
+      currentLevel: store.profile!.currentLevel,
+      currentStreak: store.profile!.currentStreak,
+      longestStreak: store.profile!.longestStreak,
+      lastActivityDate: store.profile!.lastActivityDate,
+    });
+    // 移行後のデータを再取得
+    const migratedCompletions = await fetchCompletions(userId);
+    const migratedProfile = await fetchProfile(userId);
+    store.setProfile(migratedProfile ?? profile);
+    store.loadFromCompletions(migratedCompletions);
+  } else {
+    store.setProfile(profile);
+    store.loadFromCompletions(dbCompletions);
+  }
 }
 
 /**
