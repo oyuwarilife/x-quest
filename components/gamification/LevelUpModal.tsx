@@ -96,8 +96,8 @@ export default function LevelUpModal() {
               <button
                 onClick={() => {
                   const text = newTitle
-                    ? `【X Quest】Lv.${levelUpTo} 称号「${newTitle}」を獲得しました！⚔️\n\nX運用マスターへの冒険を続けます💪\n\nhttps://x-quest.vercel.app`
-                    : `【X Quest】Lv.${levelUpTo} にランクアップしました！⚔️\n\nhttps://x-quest.vercel.app`;
+                    ? `【X Quest】Lv.${levelUpTo} 称号「${newTitle}」を獲得しました！⚔️\n\nX運用マスターへの冒険を続けます💪\n\n@oyuwari_life`
+                    : `【X Quest】Lv.${levelUpTo} にランクアップしました！⚔️\n\n@oyuwari_life`;
                   window.open(
                     `https://x.com/intent/tweet?text=${encodeURIComponent(text)}`,
                     "_blank"

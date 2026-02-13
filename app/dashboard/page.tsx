@@ -190,7 +190,7 @@ export default function DashboardPage() {
           </Link>
           <button
             onClick={() => {
-              const text = `【X Quest】Lv.${profile.currentLevel}「${titleInfo.title}」\n${completedTotal}/${totalTasks}クエスト達成中！⚔️\n\nX運用マスターへの冒険、一緒にやろう👇\nhttps://x-quest.vercel.app`;
+              const text = `【X Quest】Lv.${profile.currentLevel}「${titleInfo.title}」\n${completedTotal}/${totalTasks}クエスト達成中！⚔️\n\nX運用マスターへの冒険、一緒にやろう👇\n@oyuwari_life`;
               window.open(
                 `https://x.com/intent/tweet?text=${encodeURIComponent(text)}`,
                 "_blank"

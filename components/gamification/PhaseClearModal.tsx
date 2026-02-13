@@ -25,7 +25,7 @@ export default function PhaseClearModal() {
 
   const handleShare = () => {
     if (!phase) return;
-    const text = `【X Quest】Stage ${phase.id}「${phase.title}」をクリアしました！🎉\n\nX運用マスターへの冒険を続けます⚔️\n\nhttps://x-quest.vercel.app`;
+    const text = `【X Quest】Stage ${phase.id}「${phase.title}」をクリアしました！🎉\n\nX運用マスターへの冒険を続けます⚔️\n\n@oyuwari_life`;
     window.open(
       `https://x.com/intent/tweet?text=${encodeURIComponent(text)}`,
       "_blank"
