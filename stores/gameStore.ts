@@ -30,6 +30,7 @@ export const useGameStore = create<GameState>()(
       pendingXp: null,
       showPhaseClearModal: false,
       clearedPhaseId: null,
+      unlockedPhaseId: null,
 
       setProfile: (profile: UserProfile) => set({ profile }),
 
@@ -68,6 +69,13 @@ export const useGameStore = create<GameState>()(
         const leveledUp = newLevel > oldLevel;
         const newTitleInfo = leveledUp ? getLevelTitle(newLevel) : null;
 
+        // 新Phase解放判定
+        const unlockedPhase = leveledUp
+          ? PHASES.find(
+              (p) => p.requiredLevel > oldLevel && p.requiredLevel <= newLevel
+            )
+          : null;
+
         const completion: TaskCompletion = {
           id: crypto.randomUUID(),
           userId: state.profile.id,
@@ -94,6 +102,7 @@ export const useGameStore = create<GameState>()(
                 showLevelUpModal: true,
                 levelUpTo: newLevel,
                 newTitle: newTitleInfo?.title ?? null,
+                unlockedPhaseId: unlockedPhase?.id ?? null,
               }
             : {}),
           ...(bonusXp > 0
@@ -135,7 +144,7 @@ export const useGameStore = create<GameState>()(
       },
 
       dismissLevelUp: () =>
-        set({ showLevelUpModal: false, levelUpTo: null, newTitle: null }),
+        set({ showLevelUpModal: false, levelUpTo: null, newTitle: null, unlockedPhaseId: null }),
 
       dismissPhaseClear: () =>
         set({ showPhaseClearModal: false, clearedPhaseId: null }),
@@ -167,6 +176,7 @@ export const useGameStore = create<GameState>()(
           pendingXp: null,
           showPhaseClearModal: false,
           clearedPhaseId: null,
+          unlockedPhaseId: null,
         }),
     }),
     {

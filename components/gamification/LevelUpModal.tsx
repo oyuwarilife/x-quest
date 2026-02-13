@@ -5,10 +5,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import confetti from "canvas-confetti";
 import { getLevelTitle } from "@/lib/xp";
 import { useGameStore } from "@/stores/gameStore";
+import { PHASES } from "@/lib/roadmap-data";
 
 export default function LevelUpModal() {
-  const { showLevelUpModal, levelUpTo, newTitle, dismissLevelUp } =
+  const { showLevelUpModal, levelUpTo, newTitle, unlockedPhaseId, dismissLevelUp } =
     useGameStore();
+
+  const unlockedPhase = PHASES.find((p) => p.id === unlockedPhaseId);
 
   useEffect(() => {
     if (showLevelUpModal) {
@@ -82,13 +85,36 @@ export default function LevelUpModal() {
 
             {newTitle && (
               <motion.div
-                className="text-xl font-bold mb-6"
+                className="text-xl font-bold mb-4"
                 style={{ color: titleInfo?.color }}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
               >
                 称号「{newTitle}」を獲得！
+              </motion.div>
+            )}
+
+            {unlockedPhase && (
+              <motion.div
+                className="mb-6 p-3 rounded-xl border-2 border-dashed border-secondary/50 bg-secondary/10"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.7, type: "spring", stiffness: 200 }}
+              >
+                <motion.div
+                  className="text-xs text-secondary font-bold mb-1"
+                  animate={{ opacity: [0.5, 1, 0.5] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                >
+                  NEW STAGE UNLOCKED!
+                </motion.div>
+                <div className="flex items-center justify-center gap-2">
+                  <span className="text-lg">{unlockedPhase.icon}</span>
+                  <span className="text-sm font-bold">
+                    Stage {unlockedPhase.id}: {unlockedPhase.title}
+                  </span>
+                </div>
               </motion.div>
             )}
 

@@ -12,6 +12,7 @@ interface PhaseCardProps {
   completedTaskIds: Set<string>;
   isUnlocked: boolean;
   isCurrentPhase?: boolean;
+  isJustUnlocked?: boolean;
   onToggleTask: (taskId: string, phase: number) => void;
 }
 
@@ -20,6 +21,7 @@ export default function PhaseCard({
   completedTaskIds,
   isUnlocked,
   isCurrentPhase = false,
+  isJustUnlocked = false,
   onToggleTask,
 }: PhaseCardProps) {
   const [isOpen, setIsOpen] = useState(isCurrentPhase);
@@ -31,14 +33,28 @@ export default function PhaseCard({
   const progress = totalCount > 0 ? completedCount / totalCount : 0;
 
   return (
-    <div
+    <motion.div
       className={`rounded-2xl border-2 overflow-hidden transition-colors ${
         !isUnlocked
           ? "border-locked/30 bg-locked/5"
           : isComplete
           ? "border-secondary/40 bg-secondary/5"
+          : isJustUnlocked
+          ? "border-secondary/60 bg-secondary/10"
           : "border-border bg-surface"
       }`}
+      {...(isJustUnlocked
+        ? {
+            animate: {
+              boxShadow: [
+                "0 0 0px rgba(0,184,148,0)",
+                "0 0 20px rgba(0,184,148,0.4)",
+                "0 0 0px rgba(0,184,148,0)",
+              ],
+            },
+            transition: { duration: 2, repeat: 2 },
+          }
+        : {})}
     >
       <button
         onClick={() => isUnlocked && setIsOpen(!isOpen)}
@@ -62,6 +78,14 @@ export default function PhaseCard({
               <span className="text-xs bg-secondary text-white px-2 py-0.5 rounded-full">
                 CLEAR
               </span>
+            ) : isJustUnlocked ? (
+              <motion.span
+                className="text-xs bg-secondary text-white px-2 py-0.5 rounded-full"
+                animate={{ scale: [1, 1.1, 1] }}
+                transition={{ duration: 0.6, repeat: 3 }}
+              >
+                NEW
+              </motion.span>
             ) : isCurrentPhase ? (
               <span className="text-xs bg-primary text-white px-2 py-0.5 rounded-full animate-pulse">
                 進行中
@@ -183,6 +207,6 @@ export default function PhaseCard({
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </motion.div>
   );
 }

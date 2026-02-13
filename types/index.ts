@@ -71,6 +71,7 @@ export interface GameState {
   pendingXp: number | null;
   showPhaseClearModal: boolean;
   clearedPhaseId: number | null;
+  unlockedPhaseId: number | null;
 
   // アクション
   setProfile: (profile: UserProfile) => void;

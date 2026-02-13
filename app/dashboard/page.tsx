@@ -1,9 +1,9 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Map, ChevronRight, Swords, Share2, Crown } from "lucide-react";
+import { Map, ChevronRight, Swords, Image as ImageIcon, Crown } from "lucide-react";
 import Link from "next/link";
 import { useGameStore } from "@/stores/gameStore";
 import Header from "@/components/layout/Header";
@@ -14,6 +14,7 @@ import LevelUpModal from "@/components/gamification/LevelUpModal";
 import PhaseClearModal from "@/components/gamification/PhaseClearModal";
 import XPFloat from "@/components/gamification/XPFloat";
 import ProgressBar from "@/components/ui/ProgressBar";
+import ShareCardModal from "@/components/gamification/ShareCardModal";
 import { PHASES } from "@/lib/roadmap-data";
 import { getLevelTitle } from "@/lib/xp";
 
@@ -21,6 +22,7 @@ export default function DashboardPage() {
   const router = useRouter();
   const profile = useGameStore((s) => s.profile);
   const completedTaskIds = useGameStore((s) => s.completedTaskIds);
+  const [showShareCard, setShowShareCard] = useState(false);
 
   useEffect(() => {
     if (!profile) router.replace("/");
@@ -189,19 +191,18 @@ export default function DashboardPage() {
             冒険マップへ
           </Link>
           <button
-            onClick={() => {
-              const text = `【X Quest】Lv.${profile.currentLevel}「${titleInfo.title}」\n${completedTotal}/${totalTasks}クエスト達成中！⚔️\n\nX運用マスターへの冒険、一緒にやろう👇\n@oyuwari_life`;
-              window.open(
-                `https://x.com/intent/tweet?text=${encodeURIComponent(text)}`,
-                "_blank"
-              );
-            }}
+            onClick={() => setShowShareCard(true)}
             className="w-full flex items-center justify-center gap-2 p-3 rounded-2xl font-bold text-sm transition-transform hover:scale-[1.02] active:scale-[0.98] border-2 border-border text-text-sub"
           >
-            <Share2 size={16} />
-            進捗をXでシェア
+            <ImageIcon size={16} />
+            進捗カードを作成・シェア
           </button>
         </motion.div>
+
+        <ShareCardModal
+          open={showShareCard}
+          onClose={() => setShowShareCard(false)}
+        />
       </main>
 
       <BottomNav />

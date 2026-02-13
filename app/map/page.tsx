@@ -19,6 +19,7 @@ export default function RoadmapPage() {
   const completedTaskIds = useGameStore((s) => s.completedTaskIds);
   const completeTask = useGameStore((s) => s.completeTask);
   const uncompleteTask = useGameStore((s) => s.uncompleteTask);
+  const unlockedPhaseId = useGameStore((s) => s.unlockedPhaseId);
 
   useEffect(() => {
     if (!profile) router.replace("/");
@@ -79,6 +80,7 @@ export default function RoadmapPage() {
                 completedTaskIds={completedTaskIds}
                 isUnlocked={profile.currentLevel >= phase.requiredLevel}
                 isCurrentPhase={phase.id === currentPhaseId}
+                isJustUnlocked={phase.id === unlockedPhaseId}
                 onToggleTask={handleToggleTask}
               />
             </motion.div>
