@@ -22,8 +22,8 @@ export const PHASES: Phase[] = [
       "最初から完璧を目指さなくてOK。Phase 3以降で修正していける",
     ],
     resources: [
-      { label: "ベンチマーク分析シート", url: "#" },
-      { label: "ポジショニング整理ワークシート", url: "#" },
+      { label: "ベンチマーク分析シート", url: "https://oyuwari.notion.site/X-Quest-Notion-306206dfc7ee80349025f5d5e460ec98" },
+      { label: "ポジショニング整理ワークシート", url: "https://oyuwari.notion.site/X-Quest-Notion-306206dfc7ee80349025f5d5e460ec98" },
     ],
   },
   {
@@ -48,8 +48,8 @@ export const PHASES: Phase[] = [
       "ポートフォリオは最初は3〜5作品でOK。量より質を重視",
     ],
     resources: [
-      { label: "プロフィール文テンプレート集", url: "#" },
-      { label: "固定ポスト構成テンプレート", url: "#" },
+      { label: "プロフィール文テンプレート集", url: "https://oyuwari.notion.site/X-Quest-Notion-306206dfc7ee80349025f5d5e460ec98" },
+      { label: "固定ポスト構成テンプレート", url: "https://oyuwari.notion.site/X-Quest-Notion-306206dfc7ee80349025f5d5e460ec98" },
     ],
   },
   {
@@ -73,8 +73,8 @@ export const PHASES: Phase[] = [
       "「学んだこと」「失敗談」「お客さんに聞かれたこと」はネタの宝庫",
     ],
     resources: [
-      { label: "投稿ネタ50選ワークシート", url: "#" },
-      { label: "投稿テンプレート集（型×具体例）", url: "#" },
+      { label: "投稿ネタ50選ワークシート", url: "https://oyuwari.notion.site/X-Quest-Notion-306206dfc7ee80349025f5d5e460ec98" },
+      { label: "投稿テンプレート集（型×具体例）", url: "https://oyuwari.notion.site/X-Quest-Notion-306206dfc7ee80349025f5d5e460ec98" },
     ],
   },
   {
@@ -99,7 +99,7 @@ export const PHASES: Phase[] = [
       "図解はCanva＋テンプレートで十分。デザインスキルは不要",
     ],
     resources: [
-      { label: "投稿分析シート（週次振り返り用）", url: "#" },
+      { label: "投稿分析シート（週次振り返り用）", url: "https://oyuwari.notion.site/X-Quest-Notion-306206dfc7ee80349025f5d5e460ec98" },
     ],
   },
   {
@@ -123,8 +123,8 @@ export const PHASES: Phase[] = [
       "問い合わせ後の対応が遅いと離脱する。24時間以内の返信を心がけよう",
     ],
     resources: [
-      { label: "サービスメニュー設計シート", url: "#" },
-      { label: "DM返信テンプレート集", url: "#" },
+      { label: "サービスメニュー設計シート", url: "https://oyuwari.notion.site/X-Quest-Notion-306206dfc7ee80349025f5d5e460ec98" },
+      { label: "DM返信テンプレート集", url: "https://oyuwari.notion.site/X-Quest-Notion-306206dfc7ee80349025f5d5e460ec98" },
     ],
   },
   {

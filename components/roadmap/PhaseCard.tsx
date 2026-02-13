@@ -159,11 +159,6 @@ export default function PhaseCard({
                       </a>
                     ))}
                   </div>
-                  {phase.resources.some((r) => r.url === "#") && (
-                    <p className="text-xs text-text-sub mt-1.5 opacity-60">
-                      ※ 準備中のシートがあります
-                    </p>
-                  )}
                 </div>
               )}
             </div>
