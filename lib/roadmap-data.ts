@@ -107,7 +107,7 @@ export const PHASES: Phase[] = [
     title: "導線設計＆集客の仕組み化",
     description: "興味を持った人がスムーズに問い合わせできる仕組みを作ろう。",
     icon: "🔗",
-    requiredLevel: 12,
+    requiredLevel: 11,
     tasks: [
       { id: "p5_cta_profile", label: "プロフィール→問い合わせの導線を明確にした", xp: TASK_XP },
       { id: "p5_freebie", label: "無料特典（PDF/テンプレ/チェックリスト等）を用意した", xp: TASK_XP },
@@ -132,7 +132,7 @@ export const PHASES: Phase[] = [
     title: "案件獲得＆実績化",
     description: "ついにX経由で仕事を獲得。実績を次の案件につなげよう。",
     icon: "🏆",
-    requiredLevel: 15,
+    requiredLevel: 14,
     tasks: [
       { id: "p6_first_inquiry", label: "X経由で初の問い合わせ・相談を受けた", xp: TASK_XP },
       { id: "p6_first_deal", label: "X経由で初案件を獲得した", xp: TASK_XP },
