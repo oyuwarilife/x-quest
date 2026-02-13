@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, Lock } from "lucide-react";
+import { ChevronDown, Lock, Lightbulb, ExternalLink } from "lucide-react";
 import type { Phase } from "@/types";
 import TaskCheckbox from "./TaskCheckbox";
 import ProgressBar from "@/components/ui/ProgressBar";
@@ -118,6 +118,54 @@ export default function PhaseCard({
                   onToggle={(id) => onToggleTask(id, phase.id)}
                 />
               ))}
+
+              {/* コツ・アドバイス */}
+              {phase.tips && phase.tips.length > 0 && (
+                <div className="mt-3 p-3 rounded-xl bg-accent/10 border border-accent/20">
+                  <div className="flex items-center gap-1.5 mb-2">
+                    <Lightbulb size={14} style={{ color: "var(--color-accent)" }} />
+                    <span className="text-xs font-bold" style={{ color: "var(--color-accent)" }}>
+                      コツ・アドバイス
+                    </span>
+                  </div>
+                  <ul className="space-y-1.5">
+                    {phase.tips.map((tip, i) => (
+                      <li key={i} className="text-xs text-text-sub leading-relaxed pl-4 relative">
+                        <span className="absolute left-0">・</span>
+                        {tip}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* 補足リソース */}
+              {phase.resources && phase.resources.length > 0 && (
+                <div className="mt-2 p-3 rounded-xl bg-primary/5 border border-primary/15">
+                  <span className="text-xs font-bold text-primary block mb-1.5">
+                    お役立ちシート
+                  </span>
+                  <div className="space-y-1">
+                    {phase.resources.map((resource, i) => (
+                      <a
+                        key={i}
+                        href={resource.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1.5 text-xs text-primary hover:underline"
+                      >
+                        <ExternalLink size={12} />
+                        {resource.label}
+                      </a>
+                    ))}
+                  </div>
+                  {phase.resources.some((r) => r.url === "#") && (
+                    <p className="text-xs text-text-sub mt-1.5 opacity-60">
+                      ※ 準備中のシートがあります
+                    </p>
+                  )}
+                </div>
+              )}
             </div>
           </motion.div>
         )}

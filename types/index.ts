@@ -2,6 +2,12 @@
 // X運用マスター 型定義
 // ========================================
 
+/** 補足リソース（Notionシート等） */
+export interface Resource {
+  label: string;
+  url: string;
+}
+
 /** ロードマップのフェーズ */
 export interface Phase {
   id: number;
@@ -10,6 +16,8 @@ export interface Phase {
   icon: string;
   requiredLevel: number;
   tasks: Task[];
+  tips?: string[];
+  resources?: Resource[];
 }
 
 /** フェーズ内の個別タスク */
