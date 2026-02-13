@@ -1,0 +1,107 @@
+"use client";
+
+import { useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import confetti from "canvas-confetti";
+import { getLevelTitle } from "@/lib/xp";
+import { useGameStore } from "@/stores/gameStore";
+
+export default function LevelUpModal() {
+  const { showLevelUpModal, levelUpTo, newTitle, dismissLevelUp } =
+    useGameStore();
+
+  useEffect(() => {
+    if (showLevelUpModal) {
+      // 紙吹雪演出
+      const duration = 2000;
+      const end = Date.now() + duration;
+
+      const frame = () => {
+        confetti({
+          particleCount: 3,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0, y: 0.7 },
+          colors: ["#6C5CE7", "#00B894", "#FDCB6E", "#E17055"],
+        });
+        confetti({
+          particleCount: 3,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1, y: 0.7 },
+          colors: ["#6C5CE7", "#00B894", "#FDCB6E", "#E17055"],
+        });
+
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
+      };
+      frame();
+    }
+  }, [showLevelUpModal]);
+
+  const titleInfo = levelUpTo ? getLevelTitle(levelUpTo) : null;
+
+  return (
+    <AnimatePresence>
+      {showLevelUpModal && levelUpTo && (
+        <motion.div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={dismissLevelUp}
+        >
+          <motion.div
+            className="bg-surface rounded-2xl p-8 mx-4 text-center shadow-2xl max-w-sm w-full"
+            initial={{ scale: 0.3, opacity: 0, y: 50 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0.8, opacity: 0 }}
+            transition={{ type: "spring", damping: 15, stiffness: 300 }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <motion.div
+              className="text-5xl mb-4"
+              animate={{ scale: [1, 1.3, 1] }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              🎉
+            </motion.div>
+
+            <h2 className="text-lg text-text-sub mb-2">LEVEL UP!</h2>
+
+            <motion.div
+              className="text-6xl font-black mb-3"
+              style={{ color: titleInfo?.color ?? "var(--color-primary)" }}
+              initial={{ scale: 0.5 }}
+              animate={{ scale: 1 }}
+              transition={{ type: "spring", delay: 0.2 }}
+            >
+              Lv.{levelUpTo}
+            </motion.div>
+
+            {newTitle && (
+              <motion.div
+                className="text-xl font-bold mb-6"
+                style={{ color: titleInfo?.color }}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+              >
+                「{newTitle}」になりました！
+              </motion.div>
+            )}
+
+            <button
+              onClick={dismissLevelUp}
+              className="px-6 py-2.5 rounded-full text-white font-bold text-sm transition-transform hover:scale-105 active:scale-95"
+              style={{ backgroundColor: "var(--color-primary)" }}
+            >
+              OK
+            </button>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}

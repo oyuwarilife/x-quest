@@ -1,26 +1,29 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-primary: #6C5CE7;
+  --color-primary-light: #A29BFE;
+  --color-secondary: #00B894;
+  --color-accent: #FDCB6E;
+  --color-streak: #E17055;
+  --color-x-blue: #1DA1F2;
+  --color-bg: #F8F9FE;
+  --color-surface: #FFFFFF;
+  --color-text: #2D3436;
+  --color-text-sub: #636E72;
+  --color-border: #E2E8F0;
+  --color-locked: #B2BEC3;
+  --font-sans: "Noto Sans JP", "Inter", sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ボトムナビ分のパディング */
+.pb-nav {
+  padding-bottom: 5rem;
 }
