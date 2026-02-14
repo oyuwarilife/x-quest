@@ -156,7 +156,7 @@ export default function LandingPage() {
       {/* 冒険者の装備（Notionシート） */}
       <section className="max-w-lg mx-auto px-4 pb-10">
         <motion.a
-          href="https://oyuwari.notion.site/X-Quest-Notion-306206dfc7ee80349025f5d5e460ec98"
+          href="https://oyuwari.notion.site/x-quest?source=copy_link"
           target="_blank"
           rel="noopener noreferrer"
           className="block p-4 rounded-2xl border-2 border-accent/40 bg-accent/10 hover:bg-accent/15 transition-colors"
@@ -248,7 +248,7 @@ export default function LandingPage() {
           </p>
           <div className="flex items-center justify-center gap-4 text-xs text-text-sub">
             <a
-              href="https://x.com/oyuwarilife"
+              href="https://x.com/oyuwari_life"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-primary transition-colors"
@@ -257,7 +257,7 @@ export default function LandingPage() {
             </a>
             <span className="text-border">|</span>
             <a
-              href="https://oyuwari.notion.site/X-Quest-Notion-306206dfc7ee80349025f5d5e460ec98"
+              href="https://oyuwari.notion.site/x-quest?source=copy_link"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-primary transition-colors"
